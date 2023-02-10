@@ -3,6 +3,7 @@ package gamestates;
 import entities.Player;
 import levels.LevelManager;
 import main.Game;
+import ui.PauseOverlay;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -12,6 +13,7 @@ public class Playing extends State implements Statemethods {
 
     private Player player;
     private LevelManager levelManager;
+    private PauseOverlay pauseOverlay;
     private boolean paused;
 
     public Playing(Game game) {
@@ -24,6 +26,7 @@ public class Playing extends State implements Statemethods {
         levelManager = new LevelManager(game);
         player = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE));
         player.loadLvlData(levelManager.getCurrentLevel().getLvlData());
+        pauseOverlay = new PauseOverlay();
 
     }
 
@@ -46,6 +49,7 @@ public class Playing extends State implements Statemethods {
     public void draw(Graphics g) {
         levelManager.draw(g);
         player.render(g);
+        pauseOverlay.draw(g);
     }
 
     @Override
@@ -84,6 +88,9 @@ public class Playing extends State implements Statemethods {
                 break;
             case KeyEvent.VK_BACK_SPACE:
                 Gamestate.state = Gamestate.MENU;
+                break;
+            case KeyEvent.VK_ESCAPE:
+                System.exit(0);
                 break;
             default:
                 break;
