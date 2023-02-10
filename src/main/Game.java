@@ -26,7 +26,7 @@ public class Game implements Runnable {
     public Game() {
         // Konstruktor
 
-        // init all game logic parts e.g. players, enemy, levels
+        // init the gamestates
         initClasses();
 
         gamePanel = new GamePanel(this);
