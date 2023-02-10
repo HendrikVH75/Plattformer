@@ -16,7 +16,7 @@ public class Player extends Entity {
     private int playerAction = IDLE;
     private boolean up, down, left, right, jump;
     private boolean moving = false, attacking = false;
-    private float playerSpeed = 2.0f;
+    private float playerSpeed = 1.0f * Game.SCALE; // otherwise different scales = different speeds
     private int[][] lvlData;
     private float xDrawOffset = 21 * Game.SCALE; // where the actual pixels of the sprite starts
     private float yDrawOffset = 4 * Game.SCALE; // where the actual pixels of the sprite starts
