@@ -3,8 +3,6 @@ package gamestates;
 import entities.Player;
 import levels.LevelManager;
 import main.Game;
-import main.GamePanel;
-import main.GameWindow;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -14,6 +12,7 @@ public class Playing extends State implements Statemethods {
 
     private Player player;
     private LevelManager levelManager;
+    private boolean paused;
 
     public Playing(Game game) {
         super(game);
