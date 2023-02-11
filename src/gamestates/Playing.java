@@ -49,7 +49,7 @@ public class Playing extends State implements Statemethods {
     public void draw(Graphics g) {
         levelManager.draw(g);
         player.render(g);
-        pauseOverlay.draw(g);
+        //pauseOverlay.draw(g);
     }
 
     @Override
