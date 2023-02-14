@@ -34,7 +34,7 @@ public class Player extends Entity {
         loadAnimations();
         // width and height measured from the actual pixels of the sprite,
         // not the transparent surroundings
-        initHitbox(x, y, (int)(20 * Game.SCALE), (int)(27 * Game.SCALE)); // int casting to avoid decimal numbers
+        initHitbox(x, y, (int) (20 * Game.SCALE), (int) (27 * Game.SCALE)); // int casting to avoid decimal numbers
     }
 
     public void update() {
@@ -45,9 +45,9 @@ public class Player extends Entity {
 
     }
 
-    public void render(Graphics g) {
+    public void render(Graphics g, int xlvlOffset) {
 
-        g.drawImage(animations[playerAction][aniIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
+        g.drawImage(animations[playerAction][aniIndex], (int) (hitbox.x - xDrawOffset) - xlvlOffset, (int) (hitbox.y - yDrawOffset), width, height, null);
         //drawHitbox(g);
 
     }
@@ -77,8 +77,8 @@ public class Player extends Entity {
             playerAction = IDLE;
         }
 
-        if (inAir){
-            if (airSpeed<0){
+        if (inAir) {
+            if (airSpeed < 0) {
                 playerAction = JUMP;
             } else {
                 playerAction = FALLING;
@@ -106,11 +106,13 @@ public class Player extends Entity {
 
         moving = false;
 
-        if (jump){
+        if (jump) {
             jump();
         }
-        if (!left && !right && !inAir) {
-            return;
+        if (!inAir) {
+            if ((!left && !right) || (right && left)) {
+                return;
+            }
         }
 
         float xSpeed = 0;
@@ -122,8 +124,8 @@ public class Player extends Entity {
             xSpeed += playerSpeed;
         }
 
-        if (!inAir){
-            if (!IsEntityOnFloor(hitbox, lvlData)){
+        if (!inAir) {
+            if (!IsEntityOnFloor(hitbox, lvlData)) {
                 inAir = true;
             }
         }
@@ -154,7 +156,7 @@ public class Player extends Entity {
 
     private void jump() {
 
-        if (inAir){
+        if (inAir) {
             return;
         }
         inAir = true;
@@ -199,7 +201,7 @@ public class Player extends Entity {
 
         this.lvlData = lvlData;
         // check if the player is set in the air on start of level
-        if (!IsEntityOnFloor(hitbox, lvlData)){
+        if (!IsEntityOnFloor(hitbox, lvlData)) {
             inAir = true;
         }
 
@@ -237,7 +239,7 @@ public class Player extends Entity {
         this.right = right;
     }
 
-    public void setJump(boolean jump){
+    public void setJump(boolean jump) {
         this.jump = jump;
     }
 
