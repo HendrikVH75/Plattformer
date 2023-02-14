@@ -58,6 +58,11 @@ public class SoundButton extends PauseButton {
         return mouseOver;
     }
 
+    public void resetBools() {
+        mousePressed = false;
+        mouseOver = false;
+    }
+
     public void setMouseOver(boolean mouseOver) {
         this.mouseOver = mouseOver;
     }
