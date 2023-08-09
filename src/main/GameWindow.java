@@ -12,12 +12,12 @@ public class GameWindow {
         jframe = new JFrame();
         jframe.setDefaultCloseOperation(jframe.EXIT_ON_CLOSE);
         jframe.add(gamePanel);
-        jframe.pack();
+        //jframe.pack();
         jframe.setResizable(false);
         jframe.setTitle("Plattformer Tutorial");
         jframe.setLocationRelativeTo(null);
 
-        jframe.setVisible(true); // needs to be BEFORE the listener!
+        //jframe.setVisible(true);
         jframe.addWindowFocusListener(new WindowFocusListener(){
             // prevent game from updating when windows focus is lost
             @Override
@@ -30,6 +30,10 @@ public class GameWindow {
                 gamePanel.getGame().windowFocusLost();
             }
         });
+
+        jframe.pack();
+        jframe.setVisible(true);
+
 
     }
 
