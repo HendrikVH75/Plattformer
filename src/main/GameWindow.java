@@ -16,6 +16,8 @@ public class GameWindow {
         jframe.setResizable(false);
         jframe.setTitle("Plattformer Tutorial");
         jframe.setLocationRelativeTo(null);
+
+        jframe.setVisible(true); // needs to be BEFORE the listener!
         jframe.addWindowFocusListener(new WindowFocusListener(){
             // prevent game from updating when windows focus is lost
             @Override
@@ -29,7 +31,6 @@ public class GameWindow {
             }
         });
 
-        jframe.setVisible(true);
     }
 
 }
